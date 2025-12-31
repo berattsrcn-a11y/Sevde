@@ -3,46 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <title>Sevde ❤️</title>
+
 <style>
 body {
-  background: linear-gradient(135deg, #ff5f6d, #ffc371);
-  font-family: Arial, sans-serif;
-  color: white;
-  text-align: center;
-  padding: 40px;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  overflow: hidden;
+  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-h1 { font-size: 36px; }
-p { font-size: 18px; line-height: 1.6; }
+
 .box {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.85);
   padding: 25px;
   border-radius: 20px;
-  margin-top: 30px;
+  max-width: 90%;
+  text-align: center;
+  z-index: 2;
+}
+
+h1 {
+  color: #d6336c;
+}
+
+#poem {
+  font-size: 18px;
+  color: #333;
+  white-space: pre-line;
+  min-height: 220px;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  color: #ff2d55;
+  animation: fly linear infinite;
+}
+
+@keyframes fly {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<h1>Sevde’ye ❤️</h1>
-
 <div class="box">
-<p><b>S</b>essiz gecelerde adın düşer kalbime,<br>
-Sanki yıldızlar bile seni anlatır bana.</p>
-
-<p><b>E</b>llerin değmeden bile ısınır içim,<br>
-En soğuk günler bile bahara döner.</p>
-
-<p><b>V</b>arlığınla tamamlanır eksik yanlarım,<br>
-Ve her kalp atışımda adın gizli.</p>
-
-<p><b>D</b>ünyamın en sakin limanı sensin,<br>
-Dinlenirim sadece seni düşününce.</p>
-
-<p><b>E</b>ğer bir ömür yazılacaksa bana,<br>
-En başına adını koymak isterim.</p>
-
-<p><b>İyi ki varsın Sevde ❤️</b></p>
+  <h1>Sevde ❤️</h1>
+  <div id="poem"></div>
 </div>
+
+<script>
+const text = `
+Seni düşünmekle başlıyor her güzel şey Sevde,
+Kalbim adını fısıldıyor gecenin sessizliğinde.
+Bir gülüşün yetiyor dünyamı aydınlatmaya,
+Bakışlarında kaybolmak en güzel dua bana.
+
+İyi ki varsın…
+İyi ki kalbimdesin.
+`;
+
+let i = 0;
+function write() {
+  if (i < text.length) {
+    document.getElementById("poem").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(write, 40);
+  }
+}
+write();
+
+function heart() {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = (15 + Math.random() * 25) + "px";
+  h.style.animationDuration = (4 + Math.random() * 4) + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 8000);
+}
+setInterval(heart, 300);
+</script>
 
 </body>
 </html>
